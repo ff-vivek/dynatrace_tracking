@@ -16,6 +16,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class GetTodoCall {
   static Future<ApiCallResponse> call() async {
+    // Step 2.1: add client in api calls
     final client = Dynatrace().createHttpClient();
     final response = await FFApiInterceptor.makeApiCall(
       // ignore: prefer_const_constructors - can be mutated by interceptors
@@ -37,6 +38,7 @@ class GetTodoCall {
       client: client,
       interceptors,
     );
+    // Step 2.2: close client
     client.close();
     return response;
   }

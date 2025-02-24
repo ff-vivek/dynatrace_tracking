@@ -8,6 +8,7 @@
         android:label="Dynatrace-tracking"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher"
+        android:extractNativeLibs="true"
         android:requestLegacyExternalStorage="true">
 
         <activity

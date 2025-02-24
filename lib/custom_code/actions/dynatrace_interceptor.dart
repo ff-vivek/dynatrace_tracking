@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import '/backend/api_requests/api_interceptor.dart';
 import 'package:dynatrace_flutter_plugin/dynatrace_flutter_plugin.dart';
 
+// Step 3: Create Interceptor
+// Step 4: Add Interceptor to API calls
 class DynatraceInterceptor extends FFApiInterceptor {
   @override
   Future<ApiCallOptions> onRequest({
@@ -17,7 +19,6 @@ class DynatraceInterceptor extends FFApiInterceptor {
   }) async {
     // Perform any necessary calls or modifications to the [options] before
     // the API call is made.
-
     WebRequestTiming timing = await Dynatrace()
         .getCurrentAction()
         .createWebRequestTiming(options.apiUrl);

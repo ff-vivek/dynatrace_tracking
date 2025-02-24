@@ -15,6 +15,7 @@ void main() async {
   usePathUrlStrategy();
 
   await FlutterFlowTheme.initialize();
+  // Step 1: Start Dynatrace
   await Dynatrace()
       .startWithoutWidget(configuration: Configuration(logLevel: LogLevel.Debug));
   runApp(MyApp());
