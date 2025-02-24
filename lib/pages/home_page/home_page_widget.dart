@@ -34,6 +34,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       await actions.dyantraceEnterAction(
         'onPageLoad',
       );
+      _model.todoResponse = await GetTodoCall.call();
+
+      if ((_model.todoResponse?.succeeded ?? true)) {
+        _model.isLoading = false;
+        safeSetState(() {});
+      }
     });
   }
 
@@ -75,63 +81,57 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              FutureBuilder<ApiCallResponse>(
-                future: GetTodoCall.call(),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
+              Builder(
+                builder: (context) {
+                  if (_model.isLoading) {
+                    return Text(
+                      'Loading todo',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Inter',
+                            letterSpacing: 0.0,
                           ),
+                    );
+                  } else {
+                    return Material(
+                      color: Colors.transparent,
+                      child: ListTile(
+                        title: Text(
+                          TodoStruct.maybeFromMap(
+                                  (_model.todoResponse?.jsonBody ?? ''))!
+                              .title,
+                          style:
+                              FlutterFlowTheme.of(context).titleLarge.override(
+                                    fontFamily: 'Inter Tight',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                        subtitle: Text(
+                          TodoStruct.maybeFromMap(
+                                  (_model.todoResponse?.jsonBody ?? ''))!
+                              .userId
+                              .toString(),
+                          style:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Inter',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 24.0,
+                        ),
+                        tileColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        dense: false,
+                        contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            12.0, 0.0, 12.0, 0.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     );
                   }
-                  final listTileGetTodoResponse = snapshot.data!;
-
-                  return Material(
-                    color: Colors.transparent,
-                    child: ListTile(
-                      title: Text(
-                        TodoStruct.maybeFromMap(
-                                listTileGetTodoResponse.jsonBody)!
-                            .title,
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Inter Tight',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      subtitle: Text(
-                        TodoStruct.maybeFromMap(
-                                listTileGetTodoResponse.jsonBody)!
-                            .userId
-                            .toString(),
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Inter',
-                                  letterSpacing: 0.0,
-                                ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
-                      ),
-                      tileColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      dense: false,
-                      contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                  );
                 },
               ),
             ],

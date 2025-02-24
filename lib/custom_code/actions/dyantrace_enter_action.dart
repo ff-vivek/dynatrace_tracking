@@ -11,5 +11,5 @@ import 'package:dynatrace_flutter_plugin/dynatrace_flutter_plugin.dart';
 
 Future dyantraceEnterAction(String actionName) async {
   // Add your function code here!
-  DynatraceRootAction webAction = Dynatrace().enterAction('Todo API call');
+  Dynatrace().enterAction(actionName);
 }
