@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>DTXApplicationID</key> <string>675495bb-e687-451e-8a84-524757df0fb5</string> <key>DTXBeaconURL</key> <string>https://bf88683wvy.bf.dynatrace.com/mbeacon</string> <key>DTXUserOptIn</key> <false/> <key>DTXStartupLoadBalancing</key> <true/>
+    <key>DTXFlavor</key>
+    <string>flutter</string>
+  </dict>
+</plist>
