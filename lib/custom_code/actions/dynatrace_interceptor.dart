@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import '/backend/api_requests/api_interceptor.dart';
 import 'package:dynatrace_flutter_plugin/dynatrace_flutter_plugin.dart';
 
-class ExampleInterceptor extends FFApiInterceptor {
+class DynatraceInterceptor extends FFApiInterceptor {
   @override
   Future<ApiCallOptions> onRequest({
     required ApiCallOptions options,

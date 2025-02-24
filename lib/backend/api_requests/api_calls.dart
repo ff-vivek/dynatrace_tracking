@@ -42,7 +42,7 @@ class GetTodoCall {
   }
 
   static final interceptors = [
-    ExampleInterceptor(),
+    DynatraceInterceptor(),
   ];
 }
 
