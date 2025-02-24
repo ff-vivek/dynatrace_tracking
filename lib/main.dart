@@ -1,3 +1,4 @@
+import 'package:dynatrace_flutter_plugin/dynatrace_flutter_plugin.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,8 @@ void main() async {
   usePathUrlStrategy();
 
   await FlutterFlowTheme.initialize();
-
+  await Dynatrace()
+      .startWithoutWidget(configuration: Configuration(logLevel: LogLevel.Debug));
   runApp(MyApp());
 }
 
