@@ -31,8 +31,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await actions.dyantraceEnterAction(
-        'onPageLoad',
+      await actions.dyantraceActionActivity(
+        'Homepage:onPageLoad',
+        true,
       );
       _model.todoResponse = await GetTodoCall.call();
 
@@ -40,6 +41,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         _model.isLoading = false;
         safeSetState(() {});
       }
+      await actions.dyantraceActionActivity(
+        'Homepage:onPageLoad',
+        false,
+      );
     });
   }
 
