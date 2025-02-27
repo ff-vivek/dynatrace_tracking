@@ -22,6 +22,7 @@ class DynatraceInterceptor extends FFApiInterceptor {
     WebRequestTiming timing = await Dynatrace()
         .getCurrentAction()
         .createWebRequestTiming(options.apiUrl);
+    print(timing);
 
     Map<String, dynamic> headers = options.headers;
     if (timing.getRequestTag() != '') {

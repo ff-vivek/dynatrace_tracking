@@ -18,6 +18,9 @@ class GetTodoCall {
   static Future<ApiCallResponse> call() async {
     // Step 2.1: add client in api calls
     final client = Dynatrace().createHttpClient();
+    // Set 2.3: start webaction
+    DynatraceRootAction webAction = Dynatrace().enterAction('Todo API call');
+
     final response = await FFApiInterceptor.makeApiCall(
       // ignore: prefer_const_constructors - can be mutated by interceptors
       ApiCallOptions(
@@ -40,6 +43,7 @@ class GetTodoCall {
     );
     // Step 2.2: close client
     client.close();
+    webAction.leaveAction();
     return response;
   }
 
