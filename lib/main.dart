@@ -1,3 +1,4 @@
+import 'package:dynatrace_flutter_plugin/dynatrace_flutter_plugin.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
+import 'package:dynatrace_flutter_plugin/dynatrace_flutter_plugin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +16,8 @@ void main() async {
   usePathUrlStrategy();
 
   await FlutterFlowTheme.initialize();
+  await Dynatrace()
+      .startWithoutWidget(configuration: Configuration(logLevel: LogLevel.Debug));
 
   runApp(MyApp());
 }

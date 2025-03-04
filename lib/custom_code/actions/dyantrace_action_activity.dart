@@ -11,11 +11,11 @@ import 'package:dynatrace_flutter_plugin/dynatrace_flutter_plugin.dart';
 
 Future dyantraceActionActivity(String actionName, bool isEntering) async {
   // Add your function code here!
-  if (isEntering) {
-    ActionManager.instance.addAction(actionName);
-  } else {
-    ActionManager.instance.removeAction(actionName);
-  }
+  // if (isEntering) {
+  //   ActionManager.instance.addAction(actionName);
+  // } else {
+  //   ActionManager.instance.removeAction(actionName);
+  // }
 }
 
 class ActionManager {
