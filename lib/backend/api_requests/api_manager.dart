@@ -6,6 +6,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
+import 'package:dynatrace_flutter_plugin/dynatrace_flutter_plugin.dart';
 import 'package:http/http.dart' as http;
 import 'package:equatable/equatable.dart';
 import 'package:http_parser/http_parser.dart';
@@ -415,6 +416,8 @@ class ApiManager {
     ApiCallOptions? options,
     http.Client? client,
   }) async {
+    client = Dynatrace().createHttpClient(client: client);
+
     final callOptions = options ??
         ApiCallOptions(
           callName: callName,
@@ -442,6 +445,7 @@ class ApiManager {
     // If we've already made this exact call before and caching is on,
     // return the cached result.
     if (cache && _apiCache.containsKey(callOptions)) {
+      client.close();
       return _apiCache[callOptions]!;
     }
 
@@ -515,6 +519,7 @@ class ApiManager {
       result = ApiCallResponse(null, {}, -1, exception: e);
     }
 
+    client.close();
     return result;
   }
 }

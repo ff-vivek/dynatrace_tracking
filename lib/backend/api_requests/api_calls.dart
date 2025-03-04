@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:dynatrace_flutter_plugin/dynatrace_flutter_plugin.dart';
-
 import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
@@ -16,10 +14,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class GetTodoCall {
   static Future<ApiCallResponse> call() async {
-    // Step 2.1: add client in api calls
-    final client = Dynatrace().createHttpClient();
-
-    final response = await FFApiInterceptor.makeApiCall(
+    return FFApiInterceptor.makeApiCall(
       // ignore: prefer_const_constructors - can be mutated by interceptors
       ApiCallOptions(
         callName: 'get todo',
@@ -29,6 +24,7 @@ class GetTodoCall {
         headers: {},
         // ignore: prefer_const_literals_to_create_immutables - can be mutated by interceptors
         params: {},
+
         returnBody: true,
         encodeBodyUtf8: false,
         decodeUtf8: false,
@@ -36,16 +32,43 @@ class GetTodoCall {
         isStreamingApi: false,
         alwaysAllowBody: false,
       ),
-      client: client,
+
       interceptors,
     );
-    // Step 2.2: close client
-    client.close();
-    return response;
   }
 
   static final interceptors = [
     DynatraceInterceptor(),
+  ];
+}
+
+class HttpschatgptcomccdecfdbffafaCall {
+  static Future<ApiCallResponse> call() async {
+    return FFApiInterceptor.makeApiCall(
+      // ignore: prefer_const_constructors - can be mutated by interceptors
+      ApiCallOptions(
+        callName: 'httpschatgptcomccdecfdbffafa',
+        apiUrl: 'https://chatgpt.com/c/67c69dec-fd28-8000-b011-07f5fafa4685',
+        callType: ApiCallType.GET,
+        // ignore: prefer_const_literals_to_create_immutables - can be mutated by interceptors
+        headers: {},
+        // ignore: prefer_const_literals_to_create_immutables - can be mutated by interceptors
+        params: {},
+
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        isStreamingApi: false,
+        alwaysAllowBody: false,
+      ),
+
+      interceptors,
+    );
+  }
+
+  static final interceptors = [
+    EmptyInterceptor(),
   ];
 }
 
